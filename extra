@@ -1,0 +1,70 @@
+ ListTile(
+      tileColor: Colors.transparent,
+      leading: icon,
+      title: Text(cardTitle),
+    );
+
+//JSON ENCODE
+import 'dart:convert';
+
+void main() {
+  final products = [
+    {'id': 1, 'name': 'Product #1'},
+    {'id': 2, 'name': 'Product #2'}
+  ];
+
+  print(json.encode(products));
+}
+O/P==>
+[{"id":1,"name":"Product #1"},{"id":2,"name":"Product #2"}]
+
+
+//JSON DECODE
+void main() {
+  const String responseData =
+      '[{"id":1,"name":"Product #1"},{"id":2,"name":"Product #2"}]';
+
+  final products = json.decode(responseData);
+
+  if (kDebugMode) {
+    // Print the type of "products"
+    print(products.runtimeType);
+
+    // Print the name of the second product in the list
+    print(products[1]['name']);
+  }
+}
+O/P==>
+List<dynamic>
+Product #2
+
+
+
+//GET REQUEST
+ void fetchUserData() async {
+    print("Fetching User Data");
+    const url = 'https://randomuser.me/api/?results=50';
+    final baseURL = Uri.parse(url);
+    final res = await http.get(baseURL);
+    final body = res.body;
+    final jsonData = jsonDecode(body);
+    final results = jsonData['results'] as List<dynamic>;
+
+    setState(() {
+      users = results.map((e) {
+        final username = Username(
+            title: e['name']['title'],
+            first: e['name']['first'],
+            last: e['name']['last']);
+
+        return User(
+            email: e['email'],
+            gender: e['gender'],
+            phone: e['phone'],
+            nat: e["nat"],
+            name: username);
+      }).toList();
+    });
+    print("Fetching Completed");
+  }
+
