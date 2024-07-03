@@ -3,6 +3,7 @@
 import 'package:flings_flutter/HttpRequests/GETHttp.dart';
 import 'package:flings_flutter/HttpRequests/POSTHttp.dart';
 import 'package:flings_flutter/pages/Login/loginWithNumber.dart';
+import 'package:flings_flutter/pages/Login/otpFillingPage.dart';
 import 'package:flings_flutter/pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/postHttpFile',
+      initialRoute: '/otpFillingPage',
       routes: {
         '/': (context) => LoginPage(),
-        '/loginWithNumber': (context) => const LoginWithNumber(),
+        '/loginWithNumberPage': (context) => const LoginWithNumberPage(),
+        '/otpFillingPage': (context) => const OTPFillingPage(),
         '/httpGETFile': (context) => HttpGETFile(),
         '/postHttpFile': (context) => POSTHttpRequest()
       },

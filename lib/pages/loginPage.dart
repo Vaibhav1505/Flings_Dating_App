@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 CustomLoginButtons(
                     onpressed: () {
-                      Navigator.pushNamed(context, '/loginWithNumber');
+                      Navigator.pushNamed(context, '/loginWithNumberPage');
                     },
                     icon: Icon(
                       Icons.phone,
