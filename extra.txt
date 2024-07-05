@@ -68,3 +68,42 @@ Product #2
     print("Fetching Completed");
   }
 
+class you{
+
+String name;
+Strnig age
+
+  you({ required this.name,required this.age})
+}
+
+ Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const OTPFillingPage(),
+              settings: RouteSettings(
+                arguments: phoneNumber.text,
+              ),
+            ));
+
+
+
+            final args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    final jsonDecodedData = jsonDecode(args.toString());
+    final phone = jsonDecodedData['phone'];
+    Future<void> matchOTP(String otp) async {
+      print("otp function");
+
+      if (otp.isNotEmpty) {
+        var respones = await http.post(
+            Uri.parse("http://192.168.1.24:5000/authenticate"),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode({'candidateKey': otp, 'phone': phone}));
+        print('this is respomse');
+
+        var body = json.decode(respones.body);
+        print("Body:" + body);
+      } else {
+        print("Wrong OTP or Unable to Login");
+      }
+    }

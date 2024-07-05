@@ -18,11 +18,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/otpFillingPage',
+      initialRoute: '/loginWithNumberPage',
       routes: {
         '/': (context) => LoginPage(),
         '/loginWithNumberPage': (context) => const LoginWithNumberPage(),
-        '/otpFillingPage': (context) => const OTPFillingPage(),
+        '/otpFillingPage': (context) => OTPFillingPage(
+              phone: '',
+            ),
         '/httpGETFile': (context) => HttpGETFile(),
         '/postHttpFile': (context) => POSTHttpRequest()
       },
