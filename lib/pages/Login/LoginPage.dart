@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:flings_flutter/components/BackgroundContainer.dart';
 import 'package:flings_flutter/components/loginButtons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,24 +11,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment(0.8, 1),
-            colors: <Color>[
-              Color(0xff1f005c),
-              Color(0xff5b0060),
-              Color(0xff870160),
-              Color(0xffac255e),
-              Color(0xffca485c),
-              Color(0xffe16b5c),
-              Color(0xfff39060),
-              Color(0xffffb56b),
-            ],
-            tileMode: TileMode.mirror,
-          ),
-        ),
+      body: BackGroundContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -84,14 +69,27 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "New User? Create an Account",
-                  style: TextStyle(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "New User? Create an Account",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600
+                          // decoration: TextDecoration.underline,
+                          ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      CupertinoIcons.paperplane_fill,
                       color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600
-                      // decoration: TextDecoration.underline,
-                      ),
+                      size: 15,
+                    )
+                  ],
                 )
               ],
             )

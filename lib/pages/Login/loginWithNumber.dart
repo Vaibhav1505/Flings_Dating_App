@@ -4,6 +4,7 @@
 
 import 'dart:convert';
 
+import 'package:flings_flutter/components/BackgroundContainer.dart';
 import 'package:flings_flutter/pages/Login/otpFillingPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,8 @@ class LoginWithNumberPage extends StatelessWidget {
       print(data);
       if (phoneNumber.isNotEmpty) {
         var response = await http.post(
-            Uri.parse("http://192.168.1.7:5000/generateCode"),
+            Uri.parse("http://192.168.135.144:5000/generateCode"),
+          
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(data));
 
@@ -44,128 +46,106 @@ class LoginWithNumberPage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment(0.8, 1),
-              colors: <Color>[
-                Color(0xff1f005c),
-                Color(0xff5b0060),
-                Color(0xff870160),
-                Color(0xffac255e),
-                Color(0xffca485c),
-                Color(0xffe16b5c),
-                Color(0xfff39060),
-                Color(0xffffb56b),
-              ],
-              tileMode: TileMode.mirror,
-            ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Icon(
-                        CupertinoIcons.arrow_left_circle,
-                        color: Colors.white,
-                        size: 30,
+        body: BackGroundContainer(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Icon(
+                      CupertinoIcons.arrow_left_circle,
+                      color: Colors.white,
+                      size: 30,
 
-                        // weight: ,
+                      // weight: ,
+                    ),
+                  ),
+                ],
+              ),
+              SvgPicture.asset(
+                'assets/images/login-image-svg.svg',
+                semanticsLabel: 'login image',
+                fit: BoxFit.contain,
+                height: 250,
+                width: double.infinity,
+                alignment: Alignment.center,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                child: Text(
+                  "Get Started With Flings",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 40),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                child: TextFormField(
+                  //DO NOT FORGET TO ADD VALIDATION IN LAST SO...NO PERSON CAN MOVE TO NEXT PAGE BEFORE FILLING THE PHONE NUMBER
+
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      filled: true,
+                      fillColor: Colors.white,
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      suffixIcon: Icon(
+                        CupertinoIcons.phone,
+                        color: Colors.black,
                       ),
-                    ),
-                  ],
+                      iconColor: Colors.white,
+                      hintText: "Enter 10 digit Mobile Number",
+                      label: Text(
+                        "Mobile Number",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                      )),
+                  controller: phoneNumber,
                 ),
-                SvgPicture.asset(
-                  'assets/images/login-image-svg.svg',
-                  semanticsLabel: 'login image',
-                  fit: BoxFit.contain,
-                  height: 250,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              SizedBox(
+                width: 200,
+                height: 45,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black)),
                   child: Text(
-                    "Get Started With Flings",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 40),
+                    "Generate OTP",
+                    style: TextStyle(color: Colors.white),
                   ),
+                  onPressed: () {
+                    submittingNumber(phoneNumber.text);
+                  },
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                  child: TextFormField(
-                    //DO NOT FORGET TO ADD VALIDATION IN LAST SO...NO PERSON CAN MOVE TO NEXT PAGE BEFORE FILLING THE PHONE NUMBER
-
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        filled: true,
-                        fillColor: Colors.white,
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        suffixIcon: Icon(
-                          CupertinoIcons.phone,
-                          color: Colors.black,
-                        ),
-                        iconColor: Colors.white,
-                        hintText: "Enter 10 digit Mobile Number",
-                        label: Text(
-                          "Mobile Number",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                        )),
-                    controller: phoneNumber,
-                  ),
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                SizedBox(
-                  width: 200,
-                  height: 45,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.black)),
-                    child: Text(
-                      "Generate OTP",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      submittingNumber(phoneNumber.text);
-                    },
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
-        // floatingActionButton: FloatingActionButton.extended(
-        //   backgroundColor: Colors.black,
-        //   onPressed: () {},
-        //   icon: Icon(
-        //     CupertinoIcons.person_fill,
-        //     color: Colors.white,
-        //   ),
-        //   label: Text(
-        //     "Generate OTP",
-        //     style: TextStyle(color: Colors.white),
-        //   ),
-        // ),
       ),
     );
+    // floatingActionButton: FloatingActionButton.extended(
+    //   backgroundColor: Colors.black,
+    //   onPressed: () {},
+    //   icon: Icon(
+    //     CupertinoIcons.person_fill,
+    //     color: Colors.white,
+    //   ),
+    //   label: Text(
+    //     "Generate OTP",
+    //     style: TextStyle(color: Colors.white),
+    //   ),
+    // ),
   }
 }

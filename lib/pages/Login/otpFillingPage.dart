@@ -1,12 +1,13 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_print, prefer_interpolation_to_compose_strings, use_build_context_synchronously
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_print, prefer_interpolation_to_compose_strings, use_build_context_synchronously, must_be_immutable
 
 //use custom input text field and also pass otpcontroller in body of http request
 
 import 'dart:convert';
 
-import 'package:flings_flutter/pages/Login/loginWithNumber.dart';
-import 'package:flings_flutter/pages/demoDataPage.dart';
+import 'package:flings_flutter/components/BackgroundContainer.dart';
+import 'package:flings_flutter/pages/Information/UpdateMandatoryInfo.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class OTPFillingPage extends StatefulWidget {
@@ -27,6 +28,8 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
     //     ModalRoute.of(context)!.settings.arguments as String;
 
     Future<void> matchOTP() async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+
       print("MatchOTP function Started");
       print("matchOTP function running");
 
@@ -37,14 +40,15 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
         var data = {"phone": phone, "candidateCode": otp};
         var body = jsonEncode(data);
         var response = await http.post(
-            Uri.parse('http://192.168.1.7:5000/authenticate'),
+            Uri.parse('http://192.168.135.144:5000/authenticate'),
             body: body,
             headers: {"Content-Type": "application/json"});
 
         if (response.statusCode == 200) {
           print("OTP verified Successfully");
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => DemoDataPage()));
+          prefs.setString("Data", body);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => UpdateMandatoryInfo()));
           print("MatchOTP function Completed");
         } else {
           print("Unable to verify OTP");
@@ -54,26 +58,7 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
 
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment(0.8, 1),
-              colors: <Color>[
-                Color(0xff1f005c),
-                Color(0xff5b0060),
-                Color(0xff870160),
-                Color(0xffac255e),
-                Color(0xffca485c),
-                Color(0xffe16b5c),
-                Color(0xfff39060),
-                Color(0xffffb56b),
-              ],
-              tileMode: TileMode.mirror,
-            ),
-          ),
+        body: BackGroundContainer(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,7 +105,11 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
                   controller: otpController,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    enabledBorder: UnderlineInputBorder(
+                    hintText: "Enter OTP",
+                    hintStyle: TextStyle(
+                      color: const Color.fromARGB(255, 229, 229, 229),
+                    ),
+                    enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)),
                     hoverColor: Colors.white,
                     prefixIcon: Icon(
@@ -181,22 +170,22 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
             ],
           ),
         ),
-        // floatingActionButton: FloatingActionButton.extended(
-        //   backgroundColor: buttonStyle.floatingActionButtonColor,
-        //   icon: Icon(
-        //     Icons.done_all_outlined,
-        //     color: Colors.white,
-        //   ),
-        //   onPressed: () {
-        //     print("OTP Button Pressed");
-        //     matchOTP;
-        //   },
-        //   label: Text(
-        //     "Submit",
-        //     style: TextStyle(color: TextStyles.flotingActionButtonTextColor),
-        //   ),
-        // ),
       ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   backgroundColor: buttonStyle.floatingActionButtonColor,
+      //   icon: Icon(
+      //     Icons.done_all_outlined,
+      //     color: Colors.white,
+      //   ),
+      //   onPressed: () {
+      //     print("OTP Button Pressed");
+      //     matchOTP;
+      //   },
+      //   label: Text(
+      //     "Submit",
+      //     style: TextStyle(color: TextStyles.flotingActionButtonTextColor),
+      //   ),
+      // ),
     );
   }
 }
