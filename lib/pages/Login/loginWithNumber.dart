@@ -27,9 +27,9 @@ class LoginWithNumberPage extends StatelessWidget {
       if (phoneNumber.isNotEmpty) {
         var response = await http.post(
             Uri.parse("http://192.168.135.144:5000/generateCode"),
-          
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(data));
+        
 
         if (response.statusCode == 200) {
           Navigator.push(

@@ -2,11 +2,12 @@
 
 import 'package:flings_flutter/Practice/HttpRequests/GETHttp.dart';
 import 'package:flings_flutter/Practice/HttpRequests/POSTHttp.dart';
-import 'package:flings_flutter/Practice/sharedPreference/sharedPreference.dart';
+import 'package:flings_flutter/Practice/Storage/sharedPreference.dart';
 import 'package:flings_flutter/pages/Login/LoginWithNumber.dart';
 import 'package:flings_flutter/pages/Login/otpFillingPage.dart';
 import 'package:flings_flutter/pages/Information/UpdateMandatoryInfo.dart';
 import 'package:flings_flutter/pages/Login/LoginPage.dart';
+import 'package:flings_flutter/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,20 +21,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SharedPreferences.setMockInitialValues({
-      "Name":""
-    });
+    SharedPreferences.setMockInitialValues({});
     return MaterialApp(
-      initialRoute: '/sharedPreferencePage',
+      initialRoute: '/updateMendatoryField',
       routes: {
         '/': (context) => LoginPage(),
-        '/loginWithNumberPage': (context) => const LoginWithNumberPage(),
-        '/otpFillingPage': (context) => OTPFillingPage(
+        MyRoutes.loginPage: (context) => LoginPage(),
+        MyRoutes.loginWithNumberPage: (context) => const LoginWithNumberPage(),
+        MyRoutes.otpFillingPage: (context) => OTPFillingPage(
               phone: '',
             ),
+        MyRoutes.updateMandatoryInfo: (context) => UpdateMandatoryInfo(),
+
+        //PRACTICE ROUTE
+
         '/httpGETFile': (context) => HttpGETFile(),
         '/postHttpFile': (context) => POSTHttpRequest(),
-        '/updateMandatoryInfo': (context) => UpdateMandatoryInfo(),
         '/sharedPreferencePage': (context) => SharedPreferencePage(),
       },
       debugShowCheckedModeBanner: false,

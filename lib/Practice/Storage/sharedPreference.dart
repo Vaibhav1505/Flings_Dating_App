@@ -11,17 +11,20 @@ class SharedPreferencePage extends StatefulWidget {
 }
 
 class _SharedPreferencePageState extends State<SharedPreferencePage> {
-  String? _nameValue = '';
+  String _nameValue = '';
+  // SharedPreferences? prefs = null;
 
   @override
   void initState() {
     super.initState();
-    savingName();
+    print("initState function called");
+    updateName();
   }
 
- void savingName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _nameValue = prefs.getString("Name") ?? "lund";
+  Future<void> updateName() async {
+    final prefs = await SharedPreferences.getInstance();
+    print("Saving name function=> " + prefs.hashCode.toString());
+    _nameValue = await prefs.getString("Name") ?? "nothing savd";
     setState(() {});
   }
 
@@ -40,7 +43,7 @@ class _SharedPreferencePageState extends State<SharedPreferencePage> {
             SizedBox(
               height: 30,
             ),
-            Text(_nameValue.toString()),
+            Text(_nameValue),
             TextFormField(
               controller: nameController,
               decoration: InputDecoration(
@@ -56,9 +59,10 @@ class _SharedPreferencePageState extends State<SharedPreferencePage> {
                 backgroundColor: MaterialStateProperty.all(Colors.blue),
               ),
               onPressed: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
+                final prefs = await SharedPreferences.getInstance();
+                print("onpressed function=> " + prefs.hashCode.toString());
                 await prefs.setString("Name", nameController.text);
-                savingName();
+                print("Set String worked");
               },
               child: Text(
                 "Enter Name",

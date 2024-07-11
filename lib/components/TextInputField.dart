@@ -8,6 +8,7 @@ class CustomInputField extends StatelessWidget {
   String? labelText;
   Color? backgroundColor;
   double borderRadius;
+  VoidCallback? onTap;
 
   CustomInputField(
       {super.key,
@@ -16,7 +17,8 @@ class CustomInputField extends StatelessWidget {
       required this.borderRadius,
       this.icon,
       required this.labelText,
-      this.backgroundColor});
+      this.backgroundColor,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class CustomInputField extends StatelessWidget {
           hintText: hintText,
           prefixIcon: icon,
           labelText: labelText),
+      onTap: onTap,
     );
   }
 }
