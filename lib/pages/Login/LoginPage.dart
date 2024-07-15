@@ -4,6 +4,7 @@ import 'package:flings_flutter/components/BackgroundContainer.dart';
 import 'package:flings_flutter/components/loginButtons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -20,7 +21,7 @@ class LoginPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/icon.ico'),
+                  // Image.asset('assets/images/icon.ico'),
                   SizedBox(
                     width: 10,
                   ),

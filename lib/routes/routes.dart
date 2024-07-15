@@ -4,5 +4,6 @@ class MyRoutes {
   static String loginPage = '/loginPage';
   static String loginWithNumberPage = '/loginWithNumberPage';
   static String otpFillingPage = '/otpFillingPage';
-  static String updateMandatoryInfo = '/updateMendatoryField';
+  static String updateMandatoryInfo = '/updateMandatoryField';
+  static String updateProfile = '/updateProfile';
 }

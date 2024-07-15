@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_element
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencePage extends StatefulWidget {
   const SharedPreferencePage({super.key});
@@ -12,7 +12,7 @@ class SharedPreferencePage extends StatefulWidget {
 
 class _SharedPreferencePageState extends State<SharedPreferencePage> {
   String _nameValue = '';
-  // SharedPreferences? prefs = null;
+  // final prefs = SharedPreferences.getInstance();
 
   @override
   void initState() {
@@ -22,9 +22,9 @@ class _SharedPreferencePageState extends State<SharedPreferencePage> {
   }
 
   Future<void> updateName() async {
-    final prefs = await SharedPreferences.getInstance();
-    print("Saving name function=> " + prefs.hashCode.toString());
-    _nameValue = await prefs.getString("Name") ?? "nothing savd";
+    // final prefs = await SharedPreferences.getInstance();
+    // print("Saving name function=> " + prefs.hashCode.toString());
+    // _nameValue = await prefs.getString("Name") ?? "nothing savd";
     setState(() {});
   }
 
@@ -59,9 +59,9 @@ class _SharedPreferencePageState extends State<SharedPreferencePage> {
                 backgroundColor: MaterialStateProperty.all(Colors.blue),
               ),
               onPressed: () async {
-                final prefs = await SharedPreferences.getInstance();
-                print("onpressed function=> " + prefs.hashCode.toString());
-                await prefs.setString("Name", nameController.text);
+                // final prefs = await SharedPreferences.getInstance();
+                // print("onpressed function=> " + prefs.hashCode.toString());
+                // await prefs.setString("Name", nameController.text);
                 print("Set String worked");
               },
               child: Text(

@@ -7,13 +7,18 @@ class CustomDropDown extends StatefulWidget {
   String? dropDownValue;
   final List<String> dropDownOptions;
   final Color? dropDownBackgroundColor;
-  final String hintText;
 
+  final Color? hintTextColor;
+  final String hintText;
+  final ValueChanged<String?>? onChanged;
   CustomDropDown({
+    // required this.onChanged,
     super.key,
+    this.onChanged,
     this.dropDownValue,
     required this.dropDownOptions,
     this.dropDownBackgroundColor,
+    this.hintTextColor,
     required this.hintText,
   });
 
@@ -25,13 +30,24 @@ class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
-      hint: Text(widget.hintText),
-      decoration: InputDecoration(
-        fillColor: Colors.white,
-        filled: true,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      hint: Text(
+        widget.hintText,
+        style: TextStyle(color: Colors.white),
       ),
-      icon: Icon(CupertinoIcons.down_arrow, color: Colors.black, weight: 25),
+      decoration: InputDecoration(
+        fillColor: Colors.transparent,
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(50),
+            borderSide: BorderSide(
+              width: 2,
+              color: Colors.white,
+            )),
+      ),
+      icon: Icon(
+        CupertinoIcons.arrow_down_circle,
+        color: Colors.white,
+      ),
       value: widget.dropDownValue,
       items: widget.dropDownOptions.map((String option) {
         return DropdownMenuItem(
@@ -54,10 +70,13 @@ class _CustomDropDownState extends State<CustomDropDown> {
         );
       }).toList(),
       onChanged: (String? newValue) {
-        setState(() {
-          widget.dropDownValue = newValue!;
-          print(widget.dropDownValue);
-        });
+        if (widget.onChanged != null) {
+          widget.onChanged!(newValue);
+        }
+        // setState(() {
+        //   widget.dropDownValue = newValue!;
+        //   print(widget.dropDownValue);
+        // });
       },
     );
   }

@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'package:flings_flutter/components/BackgroundContainer.dart';
 import 'package:flings_flutter/pages/Login/otpFillingPage.dart';
+import 'package:flings_flutter/routes/apiStrings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,10 +27,9 @@ class LoginWithNumberPage extends StatelessWidget {
       print(data);
       if (phoneNumber.isNotEmpty) {
         var response = await http.post(
-            Uri.parse("http://192.168.135.144:5000/generateCode"),
+            Uri.parse(LOGIN_WITH_NUMBER),
             headers: {"Content-Type": "application/json"},
             body: jsonEncode(data));
-        
 
         if (response.statusCode == 200) {
           Navigator.push(

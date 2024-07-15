@@ -4,10 +4,13 @@
 
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flings_flutter/components/BackgroundContainer.dart';
-import 'package:flings_flutter/pages/Information/UpdateMandatoryInfo.dart';
+import 'package:flings_flutter/pages/Profile/UpdateMandatoryInfo.dart';
+import 'package:flings_flutter/routes/apiStrings.dart';
+import 'package:flings_flutter/services/dioInterceptor.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class OTPFillingPage extends StatefulWidget {
@@ -23,13 +26,11 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
   @override
   Widget build(BuildContext context) {
     TextEditingController otpController = TextEditingController();
-
-    // final phoneNumberFromLoginPage =
-    //     ModalRoute.of(context)!.settings.arguments as String;
+    final dio = Dio();
+    dio.interceptors.add(DioInterceptor());
+    final storage = FlutterSecureStorage();
 
     Future<void> matchOTP() async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-
       print("MatchOTP function Started");
       print("matchOTP function running");
 
@@ -37,18 +38,46 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
       final otp = otpController.text;
 
       if (phone.isNotEmpty && otp.isNotEmpty) {
-        var data = {"phone": phone, "candidateCode": otp};
-        var body = jsonEncode(data);
-        var response = await http.post(
-            Uri.parse('http://192.168.135.144:5000/authenticate'),
-            body: body,
-            headers: {"Content-Type": "application/json"});
+        // var accessToken=
+        var sendingData = {"phone": phone, "candidateCode": otp};
+        var sendingBody = jsonEncode(sendingData);
+        var response = await dio.post(
+          (AUTHENTICATE),
+          data: sendingBody,
+        );
 
         if (response.statusCode == 200) {
           print("OTP verified Successfully");
-          prefs.setString("Data", body);
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => UpdateMandatoryInfo()));
+          print("response=>$response");
+          print(response.headers);
+          var recievedbody = response.data;
+          print("Recieved Data=>$recievedbody");
+          var decodedData = {};
+          try {
+            // decodedData = JsonDecode(recievedbody);
+            print("Decoded Recieved Data=>$decodedData");
+          } catch (e) {
+            print("Error while decoding=>$e");
+          }
+
+          String token =
+              recievedbody['accessToken'].toString() ?? "No Access token ";
+          String userData =
+              recievedbody['userData'].toString() ?? "No User Data";
+
+          print(recievedbody);
+          await storage.write(key: 'token', value: token);
+          print("Token:$token and UserData:$userData");
+
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => UpdateMandatoryInfo(
+                        token: token,
+                        userData: userData,
+                      )));
+          var recievedToken = await storage.read(key: "token");
+          print(recievedToken);
           print("MatchOTP function Completed");
         } else {
           print("Unable to verify OTP");
@@ -110,6 +139,7 @@ class _OTPFillingPageState extends State<OTPFillingPage> {
                       color: const Color.fromARGB(255, 229, 229, 229),
                     ),
                     enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
                         borderSide: BorderSide(color: Colors.white)),
                     hoverColor: Colors.white,
                     prefixIcon: Icon(
