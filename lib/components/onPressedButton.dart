@@ -7,7 +7,7 @@ class OnPressedButton extends StatelessWidget {
   Color? buttonColor;
   Color? buttonTextColor;
   double buttonBorderRadius;
-  double? buttonPadding;
+  double? horizontalPadding, verticalPadding;
   Icon buttonIcon;
   OnPressedButton(
       {super.key,
@@ -15,7 +15,8 @@ class OnPressedButton extends StatelessWidget {
       required this.onpressed,
       this.buttonColor,
       this.buttonTextColor,
-      this.buttonPadding,
+      this.horizontalPadding,
+      this.verticalPadding,
       required this.buttonBorderRadius,
       required this.buttonIcon});
 
@@ -29,7 +30,9 @@ class OnPressedButton extends StatelessWidget {
       ),
       icon: buttonIcon,
       style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(buttonPadding ?? 10),
+          padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding ?? 0,
+              vertical: verticalPadding ?? 0),
           backgroundColor: buttonColor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(buttonBorderRadius))),

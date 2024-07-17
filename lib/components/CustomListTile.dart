@@ -27,11 +27,13 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: backgroundColor,
+      
       shape: shape ??
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
       child: ListTile(
+        
         onTap: () {},
         leading: leadingWidget,
         title: Text(

@@ -59,7 +59,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
           centerTitle: true,
           actions: [
             OnPressedButton(
-                buttonPadding: 10,
+                horizontalPadding: 10,
+                verticalPadding: 10,
                 buttonTextColor: Colors.black,
                 buttonText: "Done",
                 onpressed: () {

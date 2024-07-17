@@ -10,6 +10,7 @@ class MyTheme {
 
   static Color appBarMainHeading = Colors.white;
   static Color whiteColor = Colors.white;
+  static Color fadedGrey = const Color.fromARGB(81, 158, 158, 158);
   static Shader linearGradientColor = LinearGradient(
     colors: <Color>[
       Color(0xff1f005c),
