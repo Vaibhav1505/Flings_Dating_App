@@ -107,3 +107,180 @@ Strnig age
         print("Wrong OTP or Unable to Login");
       }
     }
+
+
+
+//{================BASIC INFORMATION SECTION=====================}
+Container(
+      width: double.infinity,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                "Basic Info",
+                style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 35,
+                    foreground: Paint()..shader = MyTheme.linearGradientColor),
+              )
+            ],
+          ),
+          SizedBox(height: 20),
+          Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "About you",
+                    textAlign: TextAlign.end,
+                  ),
+                ],
+              ),
+              CustomInputField(
+                  hintText: "Enter something about yourself",
+                  borderRadius: 10,
+                  labelText: "Enter your Bio",
+                  borderColor: Colors.transparent)
+            ],
+          ),
+          SizedBox(height: 20),
+          Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Job Title",
+                  ),
+                ],
+              ),
+              CustomInputField(
+                  hintText: "Enter something about your Job",
+                  borderRadius: 50,
+                  labelText: '',
+                  borderColor: Colors.transparent)
+            ],
+          ),
+          SizedBox(height: 20),
+          Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "About you",
+                  ),
+                ],
+              ),
+              CustomInputField(
+                  hintText: "Enter something about yourself",
+                  borderRadius: 50,
+                  labelText: "",
+                  borderColor: Colors.transparent)
+            ],
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          Expanded(
+            child: CustomListTile(
+              backgroundColor: Colors.black,
+              leadingText: "Educational Level",
+              titleColor: Colors.white,
+              borderRadius: 50,
+              leadingWidget: Icon(
+                Icons.school,
+                color: Colors.white,
+              ),
+              trailingWidget: widget.selectedEducation != null
+                  ? Text(
+                      widget.selectedEducation!,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    )
+                  : OnPressedButton(
+                      buttonText: "Add",
+                      buttonTextColor: Colors.white,
+                      onpressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return CustomDialogBox(
+                                title: "Select your maixmum Educational Level",
+                                options: educationOptions,
+                                onOptionSelected: (option) {
+                                  setState(() {
+                                    selectedEducation = option;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                              );
+                            });
+                        print("religion dialog box opend");
+                      },
+                      buttonPadding: 15,
+                      buttonColor: Colors.transparent,
+                      buttonBorderRadius: 50,
+                      buttonIcon: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      )),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Expanded(
+            child: CustomListTile(
+              leadingText: "Religion",
+              borderRadius: 50,
+              titleColor: Colors.white,
+              backgroundColor: Colors.black,
+              leadingWidget: Icon(
+                CupertinoIcons.add_circled_solid,
+                color: Colors.white,
+              ),
+              trailingWidget: widget.selectedReligion != null
+                  ? Text(
+                      widget.selectedReligion!,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15),
+                    )
+                  : OnPressedButton(
+                      buttonText: "Add",
+                      buttonTextColor: Colors.white,
+                      onpressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return CustomDialogBox(
+                                title: "Select your reoligion",
+                                options: religionOptions,
+                                onOptionSelected: (option) {
+                                  setState(() {
+                                    selectedReligion = option;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                              );
+                            });
+                        print("religion dialog box opend");
+                      },
+                      buttonColor: Colors.transparent,
+                      buttonBorderRadius: 50,
+                      buttonIcon: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      )),
+            ),
+          ),
+          Divider(
+            thickness: 1,
+            color: Color.fromARGB(111, 158, 158, 158),
+          ),
+        ],
+      ),
+    );

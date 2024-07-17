@@ -6,4 +6,6 @@ class MyRoutes {
   static String otpFillingPage = '/otpFillingPage';
   static String updateMandatoryInfo = '/updateMandatoryField';
   static String updateProfile = '/updateProfile';
+  static String bottomNavigationBar = '/bottomNavigationBar';
+  static String peopleList = '/peopleList';
 }

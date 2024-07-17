@@ -6,7 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class InterceptedHTTP {
-  final storage = FlutterSecureStorage();
+  final storage =const FlutterSecureStorage();
 
   Map<String, String> headers = {};
 

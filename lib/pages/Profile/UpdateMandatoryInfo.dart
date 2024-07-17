@@ -36,7 +36,7 @@ class _UpdateMandatoryInfoState extends State<UpdateMandatoryInfo> {
   TextEditingController dobController = TextEditingController();
 
   final storage = FlutterSecureStorage();
-  var InterceptedHTTPrequest = InterceptedHTTP();
+  var InterceptedHTTPRequest = InterceptedHTTP();
   List<String> userGender = ['Male', 'Female', 'Prefer not to say'];
   List<String> oreintationGender = ['Male', 'Female', 'Prefer not to say'];
   final dio = Dio();
@@ -57,7 +57,7 @@ class _UpdateMandatoryInfoState extends State<UpdateMandatoryInfo> {
       // var recivedToken = await storage.read(key: 'token') ?? "No Token Saved";
       // print(recivedToken);
       var recievedResponse =
-          await InterceptedHTTPrequest.postHttp(UPDATE_MANDATORY_FIELD, data);
+          await InterceptedHTTPRequest.postHttp(UPDATE_MANDATORY_FIELD, data);
       print(recievedResponse);
 
       if (recievedResponse.statusCode == 200) {
@@ -105,7 +105,7 @@ class _UpdateMandatoryInfoState extends State<UpdateMandatoryInfo> {
                   borderColor: Colors.white,
                   hintTextColor: Colors.white,
                   controller: nameController,
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: Color.fromARGB(71, 0, 0, 0),
                   hintText: "Enter Your Name",
                   borderRadius: 50,
                   labelText: "Name",
