@@ -9,7 +9,7 @@ import 'package:flings_flutter/components/BottomNavigationBar.dart';
 import 'package:flings_flutter/pages/Login/LoginWithNumber.dart';
 import 'package:flings_flutter/pages/Login/otpFillingPage.dart';
 import 'package:flings_flutter/pages/Login/LoginPage.dart';
-import 'package:flings_flutter/pages/Main/PeopleList.dart';
+import 'package:flings_flutter/pages/Main/PeopleList/PeopleList.dart';
 import 'package:flings_flutter/pages/Profile/UpdataProfile.dart';
 import 'package:flings_flutter/pages/Profile/UpdateMandatoryInfo.dart';
 import 'package:flings_flutter/routes/routes.dart';
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // theme: ThemeData(textTheme: GoogleFonts.getTextTheme('poppins')),
       initialRoute: '/bottomNavigationBar',
       routes: {
         '/': (context) => LoginPage(),

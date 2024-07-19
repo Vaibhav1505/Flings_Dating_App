@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flings_flutter/pages/Main/ChatPage.dart';
-import 'package:flings_flutter/pages/Main/UserProfilePage.dart';
-import 'package:flings_flutter/pages/Main/Matching.dart';
-import 'package:flings_flutter/pages/Main/PeopleList.dart';
+import 'package:flings_flutter/pages/Main/Chat/ChatPage.dart';
+import 'package:flings_flutter/pages/Main/User/UserProfilePage.dart';
+import 'package:flings_flutter/pages/Main/Matching/Matching.dart';
+import 'package:flings_flutter/pages/Main/PeopleList/PeopleList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 0;
 
   static final List<Widget> _widgetOptions = <Widget>[
     PeopleList(),
@@ -36,7 +36,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         // fixedColor: Colors.green,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -70,7 +70,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           // BottomNavigationBarItem(icon: Icon(CupertinoIcons.add), label: 'Add')
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.red,
+        selectedItemColor: Colors.black,
         onTap: _onItemTapped,
       ),
     );

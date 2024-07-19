@@ -1,15 +1,21 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
 
 import 'package:flings_flutter/Themes/themes.dart';
 import 'package:flings_flutter/components/CustomListTile.dart';
+import 'package:flings_flutter/components/ProfileCard.dart';
 import 'package:flings_flutter/components/onPressedButton.dart';
 import 'package:flings_flutter/pages/Profile/UpdataProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
   UserProfile({super.key});
 
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,20 +45,36 @@ class UserProfile extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CircleAvatar(
-                        radius: 80,
+                      InkWell(
+                        onTap: () {
+                          print("Circle avatar tapped");
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return ProfileCard();
+                            },
+                          );
+                        },
+                        child: CircleAvatar(
+                          child: CircleAvatar(
+                            radius: 75,
+                            backgroundImage: NetworkImage(
+                                "https://imgs.search.brave.com/PtyH8zpkcZDkIU4CRdve3CmhMWW0i5oZ0r5tEvanXKA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/d2FsbHBhcGVyc2Fm/YXJpLmNvbS8xLzUw/L2N4VDU5ei5qcGc"),
+                          ),
+                          radius: 80,
+                        ),
                       ),
                       Column(
                         children: [
                           Text(
-                            "Username",
+                            "Andrew Bhaiya",
                             style: TextStyle(
                                 fontWeight: FontWeight.w900, fontSize: 25),
                           ),
                           SizedBox(
                             height: 5,
                           ),
-                          Text("54649845154545"),
+                          Text("+91000000000000"),
                           SizedBox(
                             height: 15,
                           ),

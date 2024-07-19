@@ -1,4 +1,7 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
+import 'package:flings_flutter/components/CardStackWidget.dart';
+import 'package:flings_flutter/pages/Main/PeopleList/BackgroundDesingCurve.dart';
 import 'package:flutter/material.dart';
 
 class PeopleList extends StatefulWidget {
@@ -12,11 +15,8 @@ class _PeopleListState extends State<PeopleList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: ElevatedButton.icon(
-          onPressed: () {},
-          icon: Icon(CupertinoIcons.list_number_rtl),
-          label: Text("People List")),
+        body: Stack(
+      children: [BackgroundDesignCurve(), CardStackWidget()],
     ));
   }
 }
