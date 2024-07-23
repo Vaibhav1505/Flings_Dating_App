@@ -4,10 +4,14 @@ import 'package:flings_flutter/pages/Main/Chat/ChatPage.dart';
 import 'package:flings_flutter/pages/Main/User/UserProfilePage.dart';
 import 'package:flings_flutter/pages/Main/Matching/Matching.dart';
 import 'package:flings_flutter/pages/Main/PeopleList/PeopleList.dart';
+import 'package:flings_flutter/routes/imageURL.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavigation extends StatefulWidget {
+  const BottomNavigation({super.key});
+
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
 }
@@ -38,11 +42,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         // fixedColor: Colors.green,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(
-              CupertinoIcons.list_number,
-              color: Colors.grey,
+            icon: SvgPicture.asset(
+              APP_LOGO_TRANSPARENT,
+              height: 20,
+              width: 20,
             ),
             label: 'People',
           ),

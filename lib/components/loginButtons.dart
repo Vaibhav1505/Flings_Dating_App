@@ -19,18 +19,24 @@ class CustomLoginButtons extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: onpressed,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            icon,
-            SizedBox(
-              width: 15,
-            ),
-            Text(
-              cardTitle,
-              style: TextStyle(color: Colors.white),
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              icon,
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                cardTitle,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal),
+              )
+            ],
+          ),
         ),
         style: ButtonStyle(
             padding:

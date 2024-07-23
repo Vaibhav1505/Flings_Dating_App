@@ -181,6 +181,7 @@ class _CardStackWidgetState extends State<CardStackWidget>
             );
           },
           onAccept: (int index) {
+            print("accepted");
             setState(() {
               draggableItems.removeAt(index);
             });
@@ -204,6 +205,7 @@ class _CardStackWidgetState extends State<CardStackWidget>
             );
           },
           onAccept: (int index) {
+            print("rejec");
             setState(() {
               draggableItems.removeAt(index);
             });

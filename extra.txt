@@ -284,3 +284,82 @@ Container(
         ],
       ),
     );
+
+
+
+
+
+
+    // ignore_for_file: use_build_context_synchronously, prefer_const_constructors
+
+import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:flings_flutter/components/BottomNavigationBar.dart';
+import 'package:flings_flutter/components/LoadingIcon.dart';
+import 'package:flings_flutter/routes/routes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+class LandingPage extends StatefulWidget {
+  const LandingPage({super.key});
+
+  @override
+  State<LandingPage> createState() => _LandingPageState();
+}
+
+class _LandingPageState extends State<LandingPage> {
+  final storage = FlutterSecureStorage();
+  bool isLoading = true;
+
+ 
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getInitialRoute(context);
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: FlutterSplashScreen.fadeIn(
+      backgroundColor: Colors.white,
+      
+      onInit: () {
+        debugPrint("On Init");
+      },
+      onEnd: () {
+        debugPrint("On End");
+      },
+      childWidget: SizedBox(
+        height: 500,
+        width: 500,
+        child: Image.asset("assets/images/icon.jpg"),
+      ),
+      
+      onAnimationEnd: () => debugPrint("On Fade In End"),
+      nextScreen: BottomNavigation(),
+    ));
+  }
+
+  Future<void> getInitialRoute(BuildContext context) async {
+    print("isLoaded before initState value:$isLoading");
+    final storage = FlutterSecureStorage();
+    var token;
+
+    try {
+      token = await storage.read(key: "token");
+    } catch (e) {
+      print(e.toString());
+    }
+
+    if (token != null) {
+      print("Transfer to Bottom Navigation Page....Continue...please");
+      
+    } else {
+      print("Navigate to Login Page.....Please Login ");
+      Navigator.pushNamed(context, MyRoutes.loginPage);
+    }
+
+    print("isLoaded after initState value:$isLoading");
+  }
+}

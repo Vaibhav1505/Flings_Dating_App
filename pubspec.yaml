@@ -43,6 +43,8 @@ dependencies:
   path: ^1.8.3
   http_parser: ^4.0.2
   http_interceptor: ^2.0.0-beta.8
+  another_flutter_splash_screen: ^1.2.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

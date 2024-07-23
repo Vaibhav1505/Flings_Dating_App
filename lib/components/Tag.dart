@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 
 class Tag extends StatelessWidget {
   // ignore: non_constant_identifier_names
-  String TagTitle;
+  Icon TagIcon;
   Color TagColor;
-  Tag({super.key, required this.TagTitle, required this.TagColor});
+
+  Tag({
+    super.key,
+    required this.TagIcon,
+    required this.TagColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +19,11 @@ class Tag extends StatelessWidget {
       decoration: const ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(50)),
             side: BorderSide(color: Colors.white, width: 3),
           )),
       child: Center(
-        child: Text(
-          TagTitle,
-          style: TextStyle(color: Colors.black),
-        ),
+        child: TagIcon,
       ),
     );
   }

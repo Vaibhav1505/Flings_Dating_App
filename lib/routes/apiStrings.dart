@@ -1,11 +1,11 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_const_declarations
 
-String MAIN_STRING = 'http://192.168.1.10:5000/';
+final String MAIN_STRING = 'http://192.168.1.13:5000/';
 
-String LOGIN_WITH_NUMBER = "${MAIN_STRING}generateCode";
+final String LOGIN_WITH_NUMBER = "${MAIN_STRING}generateCode";
 
-String AUTHENTICATE = "${MAIN_STRING}authenticate";
+final String AUTHENTICATE = "${MAIN_STRING}authenticate";
 
-String UPDATE_MANDATORY_FIELD = "${MAIN_STRING}updateMandatoryInfo";
+final String UPDATE_MANDATORY_FIELD = "${MAIN_STRING}updateMandatoryInfo";
 
-String UPDATE_PROFILE = "${MAIN_STRING}updateProfile";
+final String UPDATE_PROFILE = "${MAIN_STRING}updateProfile";

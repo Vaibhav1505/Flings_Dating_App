@@ -58,7 +58,7 @@ class CustomDialogBox extends StatelessWidget {
       child: OptionContainer(
         leadingColor: Colors.black,
         onTap: () {
-          print("$option tapped");
+          print("$option tapped, Widget:CustomDialogBox");
 
           if (onOptionSelected != null) {
             onOptionSelected!(option);

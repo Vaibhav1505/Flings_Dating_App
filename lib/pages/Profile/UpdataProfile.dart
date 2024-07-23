@@ -6,7 +6,9 @@ import 'package:flings_flutter/Practice/HttpRequests/POSTHttp.dart';
 import 'package:flings_flutter/Themes/themes.dart';
 import 'package:flings_flutter/components/BottomNavigationBar.dart';
 import 'package:flings_flutter/components/onPressedButton.dart';
+import 'package:flings_flutter/pages/Main/LandingPage.dart';
 import 'package:flings_flutter/pages/Main/PeopleList/PeopleList.dart';
+import 'package:flings_flutter/pages/Main/User/UserProfilePage.dart';
 import 'package:flings_flutter/pages/Profile/BasicInformationSection.dart';
 import 'package:flings_flutter/pages/Profile/GetProfileStatus.dart';
 import 'package:flings_flutter/pages/Profile/YourHabitsSection.dart';
@@ -33,8 +35,20 @@ class _UpdateProfileState extends State<UpdateProfile> {
   String? selectedDiet;
   String? selectedSocialMedia;
 
+  void handleEducationChange(String? education) {
+    setState(() {
+      selectedEducation = education;
+    });
+  }
+
+  void handleReligionChange(String? religion) {
+    setState(() {
+      selectedEducation = religion;
+    });
+  }
+
   Future<void> sendUpdateData() async {
-    var data = {
+    var extra = {
       // "about": aboutController.text,
       // "job": jobTittleController.text,
       // "company": companyController.text,
@@ -46,9 +60,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
       "diet": selectedDiet,
       "socialMedia": selectedSocialMedia
     };
+    print(extra);
 
     var recievedResponse =
-        await interceptedHttpRequest.postHttp(UPDATE_PROFILE, data);
+        await interceptedHttpRequest.postHttp(UPDATE_PROFILE, extra);
     print(recievedResponse);
   }
 
@@ -66,10 +81,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 onpressed: () {
                   sendUpdateData();
                   print("Changes Done");
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BottomNavigation()));
+                  Navigator.pop(context);
                 },
                 buttonColor: Colors.white,
                 buttonBorderRadius: 50,
@@ -99,8 +111,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
               //{BASIC INFORMAITON SECTION}
 
               BasicInfoSection(
-                selectedEducation: selectedEducation,
-                selectedReligion: selectedReligion,
+                education: selectedEducation,
+                religion: selectedReligion,
               ),
 
               SizedBox(
@@ -109,11 +121,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
               //{YOUR HABITS SECTION}
 
               YourHabitsSection(
-                  selectedDrinks: selectedDrinks,
-                  selectedSmoke: selectedSmoke,
-                  selectedExcercisingHabit: selectedExcercisingHabit,
-                  selectedDiet: selectedDiet,
-                  selectedSocialMedia: selectedSocialMedia)
+                  drinking: selectedDrinks,
+                  smoking: selectedSmoke,
+                  workout: selectedExcercisingHabit,
+                  diet: selectedDiet,
+                  socialMedia: selectedSocialMedia)
             ],
           ),
         ),

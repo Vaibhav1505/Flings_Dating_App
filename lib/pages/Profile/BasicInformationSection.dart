@@ -10,12 +10,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BasicInfoSection extends StatefulWidget {
-  String? selectedEducation, selectedReligion, about, jobTitle, company;
+  String? education, religion, about, jobTitle, company;
 
   BasicInfoSection(
       {super.key,
-      this.selectedEducation,
-      this.selectedReligion,
+      this.education,
+      this.religion,
       this.about,
       this.company,
       this.jobTitle});
@@ -25,7 +25,7 @@ class BasicInfoSection extends StatefulWidget {
 }
 
 class _BasicInfoSectionState extends State<BasicInfoSection> {
-  String? selectedEducation, selectedReligion, about, jobTitle, company;
+  String? selectedEducation, religion, about, jobTitle, company;
   TextEditingController aboutController = TextEditingController();
   TextEditingController jobTitileController = TextEditingController();
   TextEditingController companyController = TextEditingController();
@@ -98,9 +98,9 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
           leadingText: "Educational Level",
           backgroundColor: Colors.black,
           titleColor: Colors.white,
-          trailingWidget: widget.selectedEducation != null
+          trailingWidget: widget.education != null
               ? Text(
-                  widget.selectedEducation!,
+                  widget.education!,
                   style: TextStyle(
                       color: MyTheme.whiteColor,
                       fontWeight: FontWeight.bold,
@@ -118,7 +118,7 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
                             options: educationOptions,
                             onOptionSelected: (option) {
                               setState(() {
-                                widget.selectedEducation = option;
+                                widget.education = option;
                               });
                               Navigator.pop(context);
                             },
@@ -146,9 +146,9 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
           leadingText: "Religion",
           backgroundColor: Colors.black,
           titleColor: Colors.white,
-          trailingWidget: widget.selectedReligion != null
+          trailingWidget: widget.religion != null
               ? Text(
-                  widget.selectedReligion!,
+                  widget.religion!,
                   style: TextStyle(
                       color: MyTheme.whiteColor,
                       fontWeight: FontWeight.bold,
@@ -166,7 +166,7 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
                             options: religionOptions,
                             onOptionSelected: (option) {
                               setState(() {
-                                widget.selectedReligion = option;
+                                widget.religion = option;
                               });
                               Navigator.pop(context);
                             },

@@ -11,30 +11,30 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class YourHabitsSection extends StatefulWidget {
-  String? selectedDrinks;
-  String? selectedSmoke;
-  String? selectedExcercisingHabit;
-  String? selectedDiet;
-  String? selectedSocialMedia;
+  String? drinking;
+  String? smoking;
+  String? workout;
+  String? diet;
+  String? socialMedia;
 
   YourHabitsSection(
       {super.key,
-      this.selectedDrinks,
-      this.selectedSmoke,
-      this.selectedDiet,
-      this.selectedExcercisingHabit,
-      this.selectedSocialMedia});
+      this.drinking,
+      this.smoking,
+      this.diet,
+      this.workout,
+      this.socialMedia});
 
   @override
   State<YourHabitsSection> createState() => _YourHabitsSectionState();
 }
 
 class _YourHabitsSectionState extends State<YourHabitsSection> {
-  String? selectedDrinks;
-  String? selectedSmoke;
-  String? selectedExcercisingHabit;
-  String? selectedDiet;
-  String? selectedSocialMedia;
+  String? drinking;
+  String? smoking;
+  String? workout;
+  String? diet;
+  String? socialMedia;
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +63,9 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
           leadingText: "Drinking",
           backgroundColor: Colors.black,
           titleColor: Colors.white,
-          trailingWidget: widget.selectedDrinks != null
+          trailingWidget: widget.drinking != null
               ? Text(
-                  widget.selectedDrinks!,
+                  widget.drinking!,
                   style: TextStyle(
                       color: MyTheme.whiteColor,
                       fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                             options: drinkingOptions,
                             onOptionSelected: (option) {
                               setState(() {
-                                widget.selectedDrinks = option;
+                                widget.drinking = option;
                               });
                               Navigator.pop(context);
                             },
@@ -111,9 +111,9 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
           leadingText: "Smoking",
           backgroundColor: Colors.black,
           titleColor: Colors.white,
-          trailingWidget: widget.selectedSmoke != null
+          trailingWidget: widget.smoking != null
               ? Text(
-                  widget.selectedSmoke!,
+                  widget.smoking!,
                   style: TextStyle(
                       color: MyTheme.whiteColor,
                       fontWeight: FontWeight.bold,
@@ -131,7 +131,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                             options: smokingOptions,
                             onOptionSelected: (option) {
                               setState(() {
-                                widget.selectedSmoke = option;
+                                widget.smoking = option;
                               });
                               Navigator.pop(context);
                             },
@@ -159,9 +159,9 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
           leadingText: "Dietry Preference",
           backgroundColor: Colors.black,
           titleColor: Colors.white,
-          trailingWidget: widget.selectedDiet != null
+          trailingWidget: widget.diet != null
               ? Text(
-                  widget.selectedDiet!,
+                  widget.diet!,
                   style: TextStyle(
                       color: MyTheme.whiteColor,
                       fontWeight: FontWeight.bold,
@@ -179,7 +179,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                             options: foodOptions,
                             onOptionSelected: (option) {
                               setState(() {
-                                widget.selectedDiet = option;
+                                widget.diet = option;
                               });
                               Navigator.pop(context);
                             },
@@ -207,9 +207,9 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
           leadingText: "Exrcising Habit",
           backgroundColor: Colors.black,
           titleColor: Colors.white,
-          trailingWidget: widget.selectedExcercisingHabit != null
+          trailingWidget: widget.workout != null
               ? Text(
-                  widget.selectedExcercisingHabit!,
+                  widget.workout!,
                   style: TextStyle(
                       color: MyTheme.whiteColor,
                       fontWeight: FontWeight.bold,
@@ -227,7 +227,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                             options: workoutOptions,
                             onOptionSelected: (option) {
                               setState(() {
-                                widget.selectedExcercisingHabit = option;
+                                widget.workout = option;
                               });
                               Navigator.pop(context);
                             },
@@ -255,9 +255,9 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
           leadingText: "Social Media",
           backgroundColor: Colors.black,
           titleColor: Colors.white,
-          trailingWidget: widget.selectedSocialMedia != null
+          trailingWidget: widget.socialMedia != null
               ? Text(
-                  widget.selectedSocialMedia!,
+                  widget.socialMedia!,
                   style: TextStyle(
                       color: MyTheme.whiteColor,
                       fontWeight: FontWeight.bold,
@@ -275,7 +275,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                             options: socialMediaOptions,
                             onOptionSelected: (option) {
                               setState(() {
-                                widget.selectedSocialMedia = option;
+                                widget.socialMedia = option;
                               });
                               Navigator.pop(context);
                             },

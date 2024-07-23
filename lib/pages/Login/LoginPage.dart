@@ -2,6 +2,7 @@
 
 import 'package:flings_flutter/components/BackgroundContainer.dart';
 import 'package:flings_flutter/components/loginButtons.dart';
+import 'package:flings_flutter/routes/imageURL.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,9 +22,13 @@ class LoginPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Image.asset('assets/images/icon.ico'),
+                  SvgPicture.asset(
+                    APP_LOGO_TRANSPARENT,
+                    height: 50,
+                    width: 50,
+                  ),
                   SizedBox(
-                    width: 10,
+                    width: 5,
                   ),
                   Text(
                     "Flings",

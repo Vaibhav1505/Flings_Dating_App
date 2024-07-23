@@ -52,7 +52,11 @@ class _DragWidgetState extends State<DragWidget> {
                               child: Transform.rotate(
                                 angle: 15,
                                 child: Tag(
-                                    TagTitle: "Like", TagColor: Colors.green),
+
+                                    //CHANGING
+
+                                    TagIcon: Icon(Icons.favorite),
+                                    TagColor: Colors.green),
                               ))
                           : Positioned(
                               top: 50,
@@ -60,7 +64,9 @@ class _DragWidgetState extends State<DragWidget> {
                               child: Transform.rotate(
                                 angle: -12,
                                 child: Tag(
-                                  TagTitle: "Dislike",
+                                  //CHANGING
+
+                                  TagIcon: Icon(Icons.close),
                                   TagColor: Colors.teal,
                                 ),
                               ))
@@ -102,7 +108,7 @@ class _DragWidgetState extends State<DragWidget> {
                             child: Transform.rotate(
                               angle: 12,
                               child: Tag(
-                                TagTitle: 'LIKE',
+                                TagIcon: Icon(Icons.favorite),
                                 TagColor: Colors.grey[400]!,
                               ),
                             ),
@@ -113,7 +119,7 @@ class _DragWidgetState extends State<DragWidget> {
                             child: Transform.rotate(
                               angle: -12,
                               child: Tag(
-                                TagTitle: 'DISLIKE',
+                                TagIcon: Icon(Icons.close),
                                 TagColor: Colors.blue,
                               ),
                             ),
