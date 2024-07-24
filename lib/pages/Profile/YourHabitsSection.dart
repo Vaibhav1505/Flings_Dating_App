@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flings_flutter/Providers/UpdateProfileProviders.dart';
 import 'package:flings_flutter/Themes/themes.dart';
 import 'package:flings_flutter/components/CustomDiallogBox.dart';
 import 'package:flings_flutter/components/CustomListTile.dart';
@@ -8,6 +9,7 @@ import 'package:flings_flutter/data/options.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class YourHabitsSection extends StatefulWidget {
@@ -38,6 +40,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<UpdateProfileProviders>(context);
     return Column(
       // mainAxisSize: MainAxisSize.min,
       children: [
@@ -82,9 +85,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                           return CustomDialogBox(
                             options: drinkingOptions,
                             onOptionSelected: (option) {
-                              setState(() {
-                                widget.drinking = option;
-                              });
+                              provider.setDrinking(option);
                               Navigator.pop(context);
                             },
                             titleColor: Colors.white,
@@ -130,9 +131,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                           return CustomDialogBox(
                             options: smokingOptions,
                             onOptionSelected: (option) {
-                              setState(() {
-                                widget.smoking = option;
-                              });
+                              provider.setSmoking(option);
                               Navigator.pop(context);
                             },
                             titleColor: Colors.white,
@@ -178,9 +177,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                           return CustomDialogBox(
                             options: foodOptions,
                             onOptionSelected: (option) {
-                              setState(() {
-                                widget.diet = option;
-                              });
+                              provider.setDiet(option);
                               Navigator.pop(context);
                             },
                             titleColor: Colors.white,
@@ -226,9 +223,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                           return CustomDialogBox(
                             options: workoutOptions,
                             onOptionSelected: (option) {
-                              setState(() {
-                                widget.workout = option;
-                              });
+                              provider.setworkout(option);
                               Navigator.pop(context);
                             },
                             titleColor: Colors.white,
@@ -274,9 +269,7 @@ class _YourHabitsSectionState extends State<YourHabitsSection> {
                           return CustomDialogBox(
                             options: socialMediaOptions,
                             onOptionSelected: (option) {
-                              setState(() {
-                                widget.socialMedia = option;
-                              });
+                              provider.setSocialMedia(option);
                               Navigator.pop(context);
                             },
                             titleColor: Colors.white,

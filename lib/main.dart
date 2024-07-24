@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flings_flutter/Practice/State%20Management/FirstProviderTutorial.dart';
+import 'package:flings_flutter/Practice/State%20Management/MulticlassProvider.dart';
+import 'package:flings_flutter/Practice/State%20Management/MulticlassProviderPage.dart';
 import 'package:flings_flutter/Practice/State%20Management/countProvider.dart';
+import 'package:flings_flutter/Providers/UpdateProfileProviders.dart';
 import 'package:flings_flutter/components/BottomNavigationBar.dart';
 import 'package:flings_flutter/pages/Login/LoginPage.dart';
 import 'package:flings_flutter/pages/Login/LoginWithNumber.dart';
@@ -29,14 +32,17 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root ośf your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => CountProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => UpdateProfileProviders(),
+        ),
+      ],
       child: MaterialApp(
         theme: ThemeData(useMaterial3: true),
         initialRoute: '/',
         routes: {
-          '/': (context) => FirstProviderTutorial(),
-// '/': (context) => LandingPage(),
+          '/': (context) => LandingPage(),
           MyRoutes.loginPage: (context) => LoginPage(),
           MyRoutes.loginWithNumberPage: (context) => LoginWithNumberPage(),
           MyRoutes.otpFillingPage: (context) => OTPFillingPage(phone: ''),
@@ -49,7 +55,8 @@ class _MyAppState extends State<MyApp> {
           //PRACTICE
 
           MyRoutes.providerStateManagementTutorial: (context) =>
-              FirstProviderTutorial()
+              FirstProviderTutorial(),
+          MyRoutes.MultiClassProvider: (context) => MultiClassProviderPage()
         },
         debugShowCheckedModeBanner: false,
       ),

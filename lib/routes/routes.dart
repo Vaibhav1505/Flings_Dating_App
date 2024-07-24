@@ -17,5 +17,8 @@ class MyRoutes {
 
   static String peopleList = '/peopleList';
 
-  static String providerStateManagementTutorial = '/providerStateManagementTutorial';
+  static String providerStateManagementTutorial =
+      '/providerStateManagementTutorial';
+
+  static String MultiClassProvider = '/multiClassProvider';
 }

@@ -19,21 +19,18 @@ class _FirstProviderTutorialState extends State<FirstProviderTutorial> {
 
   @override
   void initState() {
-    super.initState();
+    print("InitState called");
     // TODO: implement initState
-
-    Timer.periodic(Duration(minutes: 1), (timer) {
-      counter++;
-
-      print(counter);
-      setState(() {});
+    var providerDemo = Provider.of<ProviderTutorial>(context, listen: false);
+    Timer.periodic(Duration(hours: 1), (timer) {
+      providerDemo.increaseCount();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Tech Brother Tutorial");
-    var importedCountNumber = Provider.of<CountProvider>(context);
+    print("Tech Brother Tutorial, Full Widget build");
+    var providerDemo = Provider.of<ProviderTutorial>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text("Video 3"),
@@ -42,6 +39,19 @@ class _FirstProviderTutorialState extends State<FirstProviderTutorial> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          ListTile(
+            tileColor: Colors.teal[100],
+            leading: Consumer<ProviderTutorial>(
+              builder: (context, value, child) {
+                return Text(value.userName);
+              },
+            ),
+            trailing: Consumer<ProviderTutorial>(
+              builder: (context, value, child) {
+                return Text(value.storedCountingNumber.toString());
+              },
+            ),
+          ),
           Text("Time"),
           Center(
             child: Text(
@@ -51,9 +61,20 @@ class _FirstProviderTutorialState extends State<FirstProviderTutorial> {
               ),
             ),
           ),
-          Text(
-              "Counting Number:${importedCountNumber.storedCountingNumber.toString()}")
+          Consumer<ProviderTutorial>(
+            builder: (context, value, child) {
+              return Text(
+                "Counting Number:${value.storedCountingNumber.toString()}",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              );
+            },
+          )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          providerDemo.increaseCount();
+        },
       ),
     );
   }

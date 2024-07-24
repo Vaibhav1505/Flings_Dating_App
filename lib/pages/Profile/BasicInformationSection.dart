@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, must_be_immutable
 
+import 'package:flings_flutter/Providers/UpdateProfileProviders.dart';
 import 'package:flings_flutter/Themes/themes.dart';
 import 'package:flings_flutter/components/CustomDiallogBox.dart';
 import 'package:flings_flutter/components/CustomListTile.dart';
@@ -8,6 +9,7 @@ import 'package:flings_flutter/components/onPressedButton.dart';
 import 'package:flings_flutter/data/options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BasicInfoSection extends StatefulWidget {
   String? education, religion, about, jobTitle, company;
@@ -25,13 +27,15 @@ class BasicInfoSection extends StatefulWidget {
 }
 
 class _BasicInfoSectionState extends State<BasicInfoSection> {
-  String? selectedEducation, religion, about, jobTitle, company;
+  String? education, religion;
   TextEditingController aboutController = TextEditingController();
   TextEditingController jobTitileController = TextEditingController();
   TextEditingController companyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<UpdateProfileProviders>(context);
+
     return Column(
       // direction: Axis.vertical,
       mainAxisSize: MainAxisSize.min,
@@ -117,9 +121,11 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
                           return CustomDialogBox(
                             options: educationOptions,
                             onOptionSelected: (option) {
-                              setState(() {
-                                widget.education = option;
-                              });
+                              provider.setEducation(option);
+
+                              print(
+                                  "Widget.Education: ${provider.selectedEduation}");
+
                               Navigator.pop(context);
                             },
                             titleColor: Colors.white,
@@ -165,9 +171,7 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
                           return CustomDialogBox(
                             options: religionOptions,
                             onOptionSelected: (option) {
-                              setState(() {
-                                widget.religion = option;
-                              });
+                              provider.setReligion(option);
                               Navigator.pop(context);
                             },
                             titleColor: Colors.white,

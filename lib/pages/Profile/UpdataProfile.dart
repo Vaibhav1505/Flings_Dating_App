@@ -1,21 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
-import 'dart:convert';
-
-import 'package:flings_flutter/Practice/HttpRequests/POSTHttp.dart';
+import 'package:flings_flutter/Providers/UpdateProfileProviders.dart';
 import 'package:flings_flutter/Themes/themes.dart';
-import 'package:flings_flutter/components/BottomNavigationBar.dart';
 import 'package:flings_flutter/components/onPressedButton.dart';
-import 'package:flings_flutter/pages/Main/LandingPage.dart';
-import 'package:flings_flutter/pages/Main/PeopleList/PeopleList.dart';
-import 'package:flings_flutter/pages/Main/User/UserProfilePage.dart';
 import 'package:flings_flutter/pages/Profile/BasicInformationSection.dart';
-import 'package:flings_flutter/pages/Profile/GetProfileStatus.dart';
 import 'package:flings_flutter/pages/Profile/YourHabitsSection.dart';
 import 'package:flings_flutter/routes/apiStrings.dart';
+import 'package:flings_flutter/routes/routes.dart';
 import 'package:flings_flutter/services/InterceptedHTTP.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UpdateProfile extends StatefulWidget {
   UpdateProfile({super.key});
@@ -27,38 +22,26 @@ class UpdateProfile extends StatefulWidget {
 class _UpdateProfileState extends State<UpdateProfile> {
   var interceptedHttpRequest = InterceptedHTTP();
 
-  String? selectedEducation;
-  String? selectedReligion;
-  String? selectedDrinks;
-  String? selectedSmoke;
-  String? selectedExcercisingHabit;
-  String? selectedDiet;
-  String? selectedSocialMedia;
+  // String? selectedEducation;
+  // String? selectedReligion;
+  // String? selectedDrinks;
+  // String? selectedSmoke;
+  // String? selectedExcercisingHabit;
+  // String? selectedDiet;
+  // String? selectedSocialMedia;
 
-  void handleEducationChange(String? education) {
-    setState(() {
-      selectedEducation = education;
-    });
-  }
-
-  void handleReligionChange(String? religion) {
-    setState(() {
-      selectedEducation = religion;
-    });
-  }
-
-  Future<void> sendUpdateData() async {
+  Future<void> sendUpdateData(UpdateProfileProviders provider) async {
     var extra = {
       // "about": aboutController.text,
       // "job": jobTittleController.text,
       // "company": companyController.text,
-      "education": selectedEducation,
-      "religion": selectedReligion,
-      "drinking": selectedDrinks,
-      "smoking": selectedSmoke,
-      "workout": selectedExcercisingHabit,
-      "diet": selectedDiet,
-      "socialMedia": selectedSocialMedia
+      "education": provider.selectedEduation,
+      "religion": provider.selectedReligion,
+      "drinking": provider.selectedDrink,
+      "smoking": provider.selectedSmoking,
+      "workout": provider.selectedWorkout,
+      "diet": provider.selectedDiet,
+      "socialMedia": provider.selectedSocialMedia
     };
     print(extra);
 
@@ -69,6 +52,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<UpdateProfileProviders>(context);
+
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -79,9 +64,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 buttonTextColor: Colors.black,
                 buttonText: "Done",
                 onpressed: () {
-                  sendUpdateData();
+                  sendUpdateData(provider);
                   print("Changes Done");
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, MyRoutes.bottomNavigationBar);
                 },
                 buttonColor: Colors.white,
                 buttonBorderRadius: 50,
@@ -111,8 +96,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
               //{BASIC INFORMAITON SECTION}
 
               BasicInfoSection(
-                education: selectedEducation,
-                religion: selectedReligion,
+                education: provider.selectedEduation,
+                religion: provider.selectedReligion,
               ),
 
               SizedBox(
@@ -121,11 +106,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
               //{YOUR HABITS SECTION}
 
               YourHabitsSection(
-                  drinking: selectedDrinks,
-                  smoking: selectedSmoke,
-                  workout: selectedExcercisingHabit,
-                  diet: selectedDiet,
-                  socialMedia: selectedSocialMedia)
+                  drinking: provider.selectedDrink,
+                  smoking: provider.selectedSmoking,
+                  workout: provider.selectedWorkout,
+                  diet: provider.selectedDiet,
+                  socialMedia: provider.selectedSocialMedia)
             ],
           ),
         ),
