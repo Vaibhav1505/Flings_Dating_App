@@ -363,3 +363,12 @@ class _LandingPageState extends State<LandingPage> {
     print("isLoaded after initState value:$isLoading");
   }
 }
+
+
+
+onpressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => UpdateProfile()));
+                            },

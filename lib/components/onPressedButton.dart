@@ -8,7 +8,7 @@ class OnPressedButton extends StatelessWidget {
   Color? buttonTextColor;
   double buttonBorderRadius;
   double? horizontalPadding, verticalPadding;
-  Icon buttonIcon;
+  Widget? buttonIcon;
   OnPressedButton(
       {super.key,
       required this.buttonText,
@@ -18,18 +18,17 @@ class OnPressedButton extends StatelessWidget {
       this.horizontalPadding,
       this.verticalPadding,
       required this.buttonBorderRadius,
-      required this.buttonIcon});
+      this.buttonIcon});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: onpressed,
-      
       label: Text(
         buttonText,
         style: TextStyle(color: buttonTextColor),
       ),
-      icon: buttonIcon,
+      icon: buttonIcon!,
       style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(
               horizontal: horizontalPadding ?? 0,

@@ -32,9 +32,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   Future<void> sendUpdateData(UpdateProfileProviders provider) async {
     var extra = {
-      // "about": aboutController.text,
-      // "job": jobTittleController.text,
-      // "company": companyController.text,
+      "about": provider.aboutUser,
+      "job": provider.userJob,
+      "company": provider.userCompany,
       "education": provider.selectedEduation,
       "religion": provider.selectedReligion,
       "drinking": provider.selectedDrink,

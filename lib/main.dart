@@ -11,6 +11,7 @@ import 'package:flings_flutter/pages/Login/LoginWithNumber.dart';
 import 'package:flings_flutter/pages/Login/OTPFillingPage.dart';
 import 'package:flings_flutter/pages/Main/LandingPage.dart';
 import 'package:flings_flutter/pages/Main/PeopleList/PeopleList.dart';
+import 'package:flings_flutter/pages/Main/User/UserProfilePage.dart';
 import 'package:flings_flutter/pages/Profile/UpdataProfile.dart';
 import 'package:flings_flutter/pages/Profile/UpdateMandatoryInfo.dart';
 import 'package:flings_flutter/routes/routes.dart';

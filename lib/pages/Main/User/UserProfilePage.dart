@@ -2,6 +2,7 @@
 
 import 'package:flings_flutter/Themes/themes.dart';
 import 'package:flings_flutter/components/CustomListTile.dart';
+import 'package:flings_flutter/components/IconOnpressed.dart';
 import 'package:flings_flutter/components/ProfileCard.dart';
 import 'package:flings_flutter/components/onPressedButton.dart';
 import 'package:flings_flutter/pages/Profile/UpdataProfile.dart';
@@ -16,187 +17,240 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  List<String> buttonBarItems = [
+    'Subscription',
+    'My Plan',
+    'Profile',
+    'Safety and Welbeing'
+        'User Account',
+    'Setting',
+    'Log out'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          SizedBox(
-            width: 20,
-          ),
-          Icon(CupertinoIcons.bell_fill),
-          SizedBox(
-            width: 30,
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-          child: Column(
-            children: [
-              Container(
-                  padding: EdgeInsets.all(20),
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                      color: MyTheme.fadedGrey,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          print("Circle avatar tapped");
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return ProfileCard();
-                            },
-                          );
-                        },
-                        child: CircleAvatar(
-                          child: CircleAvatar(
-                            radius: 75,
-                            backgroundImage: NetworkImage(
-                                "https://imgs.search.brave.com/PtyH8zpkcZDkIU4CRdve3CmhMWW0i5oZ0r5tEvanXKA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/d2FsbHBhcGVyc2Fm/YXJpLmNvbS8xLzUw/L2N4VDU5ei5qcGc"),
-                          ),
-                          radius: 80,
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "Andrew Bhaiya",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900, fontSize: 25),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text("+91000000000000"),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          OnPressedButton(
-                            buttonText: "Add more about Yourself",
-                            buttonTextColor: Colors.black,
-                            onpressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => UpdateProfile()));
-                            },
-                            buttonBorderRadius: 50,
-                            horizontalPadding: 25,
-                            verticalPadding: 15,
-                            buttonIcon: Icon(
-                              Icons.edit,
-                              color: Colors.black,
+        body: Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(color: Colors.grey[100]),
+          width: double.infinity,
+          height: double.infinity,
+          child: Padding(
+              padding: const EdgeInsets.only(top: 260),
+              child: Column(
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ButtonBar(
+                          alignment: MainAxisAlignment.start,
+                          children: [
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                "My Plan",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.black)),
                             ),
-                            buttonColor: Colors.white,
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Profile",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.black)),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Safety and Welbeing",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.black)),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => UpdateProfile(),
+                                    ));
+                              },
+                              child: Text(
+                                "Instrests",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(Colors.black)),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      children: [
+                        CustomListTile(
+                          borderRadius: 50,
+                          backgroundColor: Colors.black,
+                          leadingWidget: Icon(
+                            Icons.settings,
+                            color: Colors.white,
                           ),
-                        ],
-                      )
-                    ],
-                  )),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: MyTheme.fadedGrey,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: Column(
+                          leadingText: "Setting",
+                          titleColor: Colors.white,
+                          trailingWidget: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CustomListTile(
+                          borderRadius: 50,
+                          backgroundColor: Colors.black,
+                          leadingWidget: Icon(
+                            CupertinoIcons.doc_fill,
+                            color: Colors.white,
+                          ),
+                          leadingText: "Terms and Condition",
+                          titleColor: Colors.white,
+                          trailingWidget: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CustomListTile(
+                          borderRadius: 50,
+                          backgroundColor: Colors.black,
+                          leadingWidget: Icon(
+                            Icons.payment,
+                            color: Colors.white,
+                          ),
+                          leadingText: "Billing Details",
+                          titleColor: Colors.white,
+                          trailingWidget: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CustomListTile(
+                          borderRadius: 50,
+                          backgroundColor: Colors.black,
+                          leadingWidget: Icon(Icons.privacy_tip_outlined,
+                              color: Colors.white),
+                          leadingText: "Privacy and Policy",
+                          titleColor: Colors.white,
+                          trailingWidget: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CustomListTile(
+                          borderRadius: 50,
+                          backgroundColor: Colors.black,
+                          leadingWidget: Icon(
+                            Icons.logout_outlined,
+                            color: Colors.white,
+                          ),
+                          leadingText: "Logout",
+                          titleColor: Colors.white,
+                          trailingWidget: Icon(
+                            CupertinoIcons.right_chevron,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(25),
+              bottomLeft: Radius.circular(25),
+            ),
+          ),
+          height: 250,
+          width: double.infinity,
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                    radius: 75,
+                    backgroundImage: NetworkImage(
+                        'https://imgs.search.brave.com/FDv7MCZA9fchghHQCsNvBCiPMUgWz_JliNHuidR2REU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC93cDExNDg0/MDE1LmpwZw')),
+                SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomListTile(
-                      onTap: () {
-                        print("subscription checked");
-                      },
-                      borderRadius: 50,
-                      backgroundColor: Colors.black,
-                      leadingText: "My Subscription",
-                      titleColor: Colors.white,
-                      leadingWidget: Icon(
-                        Icons.star,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          "Andrew Bhaiya",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.verified_outlined,
+                          color: Colors.white,
+                        )
+                      ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
-                    CustomListTile(
-                      onTap: () {
-                        print("contact checked");
-                      },
-                      borderRadius: 50,
-                      backgroundColor: Colors.black,
-                      leadingText: "Contact Us",
-                      titleColor: Colors.white,
-                      leadingWidget: Icon(
-                        Icons.phone,
-                        color: Colors.white,
-                      ),
+                    Text(
+                      "andrewbhaiya@romania.com",
+                      style: TextStyle(color: Colors.white70),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    CustomListTile(
-                      borderRadius: 50,
-                      onTap: () {
-                        print("privacy checked");
-                      },
-                      backgroundColor: Colors.black,
-                      leadingText: "My Privacy",
-                      titleColor: Colors.white,
-                      leadingWidget: Icon(
-                        CupertinoIcons.lock_shield,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    CustomListTile(
-                      borderRadius: 50,
-                      onTap: () {
-                        print("Terms checked");
-                      },
-                      backgroundColor: Colors.black,
-                      leadingText: "Terms and Conditions",
-                      titleColor: Colors.white,
-                      leadingWidget: Icon(
-                        Icons.document_scanner,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    CustomListTile(
-                      borderRadius: 50,
-                      onTap: () {
-                        print("logout tapped");
-                      },
-                      backgroundColor: Colors.black,
-                      leadingText: "Logout",
-                      titleColor: Colors.white,
-                      leadingWidget: Icon(
-                        Icons.logout,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    Text(
+                      "+911234567890",
+                      style: TextStyle(color: Colors.white70),
+                    )
                   ],
                 ),
-              )
-            ],
+              ],
+            ),
           ),
-        )),
-      ),
-    );
+        )
+      ],
+    ));
   }
 }

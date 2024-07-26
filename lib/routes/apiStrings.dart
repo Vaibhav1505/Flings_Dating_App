@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, prefer_const_declarations
 
-final String MAIN_STRING = 'http://192.168.1.13:5000/';
+final String MAIN_STRING = 'http://192.168.1.8:5000/';
 
 final String LOGIN_WITH_NUMBER = "${MAIN_STRING}generateCode";
 

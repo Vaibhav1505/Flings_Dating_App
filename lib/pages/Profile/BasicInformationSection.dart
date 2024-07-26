@@ -35,6 +35,9 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<UpdateProfileProviders>(context);
+    provider.setAboutUser(aboutController.text.toString());
+    provider.setUserJob(jobTitileController.text.toString());
+    provider.setUserCompany(companyController.text.toString());
 
     return Column(
       // direction: Axis.vertical,
@@ -64,6 +67,9 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
             borderRadius: 50,
             controller: aboutController,
             labelText: "About",
+            onTap: () {
+              provider.setAboutUser(aboutController.text);
+            },
             borderColor: Colors.transparent),
         SizedBox(
           height: 15,
@@ -76,6 +82,9 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
             controller: jobTitileController,
             borderRadius: 50,
             labelText: "JOb Title",
+            onTap: () {
+              provider.setUserJob(jobTitileController.text);
+            },
             borderColor: Colors.transparent),
         SizedBox(
           height: 15,
@@ -90,6 +99,10 @@ class _BasicInfoSectionState extends State<BasicInfoSection> {
             controller: companyController,
             borderRadius: 50,
             labelText: "Company",
+            onTap: () {
+              
+              provider.setUserCompany(companyController.text);
+            },
             borderColor: Colors.transparent),
         SizedBox(
           height: 20,
