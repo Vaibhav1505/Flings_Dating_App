@@ -9,6 +9,7 @@ import 'package:flings_flutter/components/BottomNavigationBar.dart';
 import 'package:flings_flutter/pages/Login/LoginPage.dart';
 import 'package:flings_flutter/pages/Login/LoginWithNumber.dart';
 import 'package:flings_flutter/pages/Login/OTPFillingPage.dart';
+import 'package:flings_flutter/pages/Main/Chat/ChatPage.dart';
 import 'package:flings_flutter/pages/Main/LandingPage.dart';
 import 'package:flings_flutter/pages/Main/PeopleList/PeopleList.dart';
 import 'package:flings_flutter/pages/Main/User/UserProfilePage.dart';
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(useMaterial3: true),
         initialRoute: '/',
         routes: {
+          
           '/': (context) => LandingPage(),
           MyRoutes.loginPage: (context) => LoginPage(),
           MyRoutes.loginWithNumberPage: (context) => LoginWithNumberPage(),

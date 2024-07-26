@@ -58,7 +58,13 @@ class _UserProfileState extends State<UserProfile> {
                                       MaterialStateProperty.all(Colors.black)),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ProfileCard(),
+                                    ));
+                              },
                               child: Text(
                                 "Profile",
                                 style: TextStyle(color: Colors.white),
